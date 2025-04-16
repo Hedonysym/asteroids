@@ -2,9 +2,15 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import circleshape
 from constants import *
+from player import *
+
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+clock = pygame.time.Clock()
+dt = 0
+player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 def main():
     print(f"Starting Asteroids!\n"
@@ -16,7 +22,11 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
+        clock.tick(60)
+        dt = clock.tick()
+
 
 # ensures this wont run unless its executed directly
 # and imports wont make daisy chains of bs
